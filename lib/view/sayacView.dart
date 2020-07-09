@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:state_managment/sayac.dart';
+import 'package:state_managment/provide/sayac.dart';
 
 class SayacView extends StatelessWidget {
   const SayacView({Key key}) : super(key: key);
@@ -29,18 +29,19 @@ class SayacView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            heroTag: "arttir",
-              child: Icon(Icons.arrow_upward), onPressed: () {
+              heroTag: "arttir",
+              child: Icon(Icons.arrow_upward),
+              onPressed: () {
                 myState.arttir();
               }),
           SizedBox(
             height: 10,
           ),
           FloatingActionButton(
-            heroTag: "azalt",
-              child: Icon(Icons.arrow_downward), onPressed: () {
+              heroTag: "azalt",
+              child: Icon(Icons.arrow_downward),
+              onPressed: () {
                 myState.azalt();
-
               })
         ],
       ),
