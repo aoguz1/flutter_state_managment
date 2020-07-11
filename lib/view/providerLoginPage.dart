@@ -32,6 +32,7 @@ class _ProviderLoginPageState extends State<ProviderLoginPage> {
             child: Form(
                 key: formKey,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     TextFormField(
                       validator: (value) {
@@ -53,6 +54,9 @@ class _ProviderLoginPageState extends State<ProviderLoginPage> {
                       },
                       decoration: InputDecoration(hintText: "Password"),
                     ),
+                    SizedBox(
+                      height: 50,
+                    ),
                     RaisedButton(
                       onPressed: () async {
                         if (formKey.currentState.validate()) {
@@ -69,6 +73,29 @@ class _ProviderLoginPageState extends State<ProviderLoginPage> {
                       },
                       child: Text("Giriş Yap"),
                       color: Colors.green.shade400,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RaisedButton(
+                      onPressed: () {
+                        userRepository.googleSignInFunc();
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            width: 30,
+                            child: Image.network(
+                                "https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?fit=1000%2C1000&ssl=1"),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text("Google Sign In"),
+                        ],
+                      ),
                     )
                   ],
                 )),

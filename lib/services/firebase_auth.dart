@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 enum UserDurum {
   Idle,
@@ -11,10 +12,12 @@ enum UserDurum {
 class UserRepository with ChangeNotifier {
   FirebaseAuth _auth;
   FirebaseUser _user;
+  GoogleSignIn googleSignIn;
   UserDurum _durum = UserDurum.Idle;
 
   UserRepository() {
     _auth = FirebaseAuth.instance;
+    googleSignIn = GoogleSignIn();
     _auth.onAuthStateChanged.listen(
         _onStateChanged); // oluşturuduğumuz stream ile oturum durumunun sürekli dinlenmesini sağlıyoruz.
   }
@@ -48,8 +51,29 @@ class UserRepository with ChangeNotifier {
     }
   }
 
+  Future<bool> googleSignInFunc() async {
+    try {
+      _durum = UserDurum.OturumAciliyor;
+      notifyListeners();
+      var googleSignInAccount = await googleSignIn.signIn();
+      var googleAuth = await googleSignInAccount.authentication;
+      var credential = GoogleAuthProvider.getCredential(
+          idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+      await _auth.signInWithCredential(credential);
+
+      return true;
+    } catch (e) {
+      debugPrint("hata kodu : " + e.toString());
+
+      _durum = UserDurum.OturumKapali;
+      notifyListeners();
+      return false;
+    }
+  }
+
   Future fireSignOut() async {
     _auth.signOut();
+    googleSignIn.signOut();
     _durum = UserDurum.OturumKapali;
     notifyListeners();
     return Future.delayed(Duration.zero);

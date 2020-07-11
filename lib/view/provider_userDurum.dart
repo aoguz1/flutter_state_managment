@@ -10,13 +10,22 @@ class ProviderUserPage extends StatelessWidget {
         body: SafeArea(
           child: Container(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                CircleAvatar(
+                    radius: 45,
+                    backgroundImage:
+                        NetworkImage(userRepository.user.photoUrl)),
                 Center(child: Text("E-mail : " + userRepository.user.email)),
                 RaisedButton(
+                  color: Colors.red,
                   onPressed: () {
                     userRepository.fireSignOut();
                   },
-                  child: Text("Çıkış Yap"),
+                  child: Text(
+                    "Çıkış Yap",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
