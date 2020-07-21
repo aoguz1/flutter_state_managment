@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:state_managment/provide/sayac.dart';
+import 'package:state_managment/provider/sayac.dart';
 import 'package:state_managment/services/firebase_auth.dart';
+import 'package:state_managment/view/bloc_packageFlutter.dart';
+import 'package:state_managment/view/bloc_with_coreFlutter.dart';
 import 'package:state_managment/view/provider_switch_Page.dart';
-
 import 'package:state_managment/view/sayacView.dart';
 import 'package:provider/provider.dart';
-import 'package:state_managment/provide/sayac.dart';
+import 'package:state_managment/provider/sayac.dart';
+import 'package:state_managment/view/stream_counter.dart';
 
 void main() {
   runApp(MyApp());
@@ -67,6 +69,27 @@ class _MyHomePageState extends State<MyHomePage> {
                       builder: (context) => ProviderSwitchPage()));
                 },
                 child: Text("Firebase Auth")),
+            RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => StreamCounter()));
+              },
+              child: Text("Stream with Counter"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BlocWithFlutter()));
+              },
+              child: Text("Bloc with Flutter"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => BlocPackageWithFlutter()));
+              },
+              child: Text("Bloc Package Flutter"),
+            ),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:state_managment/provide/sayac.dart';
+import 'package:state_managment/provider/sayac.dart';
 
 class SayacView extends StatelessWidget {
   const SayacView({Key key}) : super(key: key);
