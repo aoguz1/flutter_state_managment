@@ -61,14 +61,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text("Sayac View"),
                 onPressed: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SayacView()));
+                    MaterialPageRoute(
+                      builder: (context) => SayacView(),
+                    ),
+                  );
                 }),
             RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProviderSwitchPage()));
-                },
-                child: Text("Firebase Auth")),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ProviderSwitchPage(),
+                  ),
+                );
+              },
+              child: Text("Firebase Auth"),
+            ),
             RaisedButton(
               onPressed: () {
                 Navigator.of(context).push(
